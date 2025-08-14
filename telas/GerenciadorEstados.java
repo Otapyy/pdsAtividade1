@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class GerenciadorEstados {
 		
-	public static ArrayList<Usuario> listaJogadores = new ArrayList<>();
+	public static ArrayList<Produto> listaProdutos = new ArrayList<>();
     public static TelaTabela telaTabela = null;
+    public static TelaProdutos telaProdutos = null;
 
 }
