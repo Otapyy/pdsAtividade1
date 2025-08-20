@@ -4,12 +4,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaProdutos {
     private JFrame frame;
     private JTextField campoNome;
     private JTextField campoCpf;
     private JButton btnConfirmar;
+    private JTable tabela;
+    private DefaultTableModel model;
+    private JScrollPane scrollTabela;
 
     public JFrame getFrame() {
         return frame;
@@ -23,7 +27,7 @@ public class TelaProdutos {
         frame = new JFrame("Cadastro de produtos");
         frame.setBackground(new Color(0, 0, 0));
         frame.getContentPane().setBackground(new Color(255, 255, 255));
-        frame.setBounds(100, 100, 350, 400);
+        frame.setBounds(100, 100, 500, 300);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Usando layout absoluto para setBounds funcionar
@@ -50,27 +54,27 @@ public class TelaProdutos {
 
         // Texto "Nome"
         JLabel labelNome = new JLabel("Nome:");
-        labelNome.setBounds(66, 46, 65, 23);
+        labelNome.setBounds(270, 46, 65, 23);
         labelNome.setForeground(new Color(0, 0, 0));
         labelNome.setFont(new Font("Tahoma", Font.PLAIN, 19));
         frame.getContentPane().add(labelNome);
 
         // Campo "Nome"
         campoNome = new JTextField();
-        campoNome.setBounds(66, 74, 225, 23);
+        campoNome.setBounds(270, 74, 190, 23);
         campoNome.setForeground(new Color(0, 0, 0));
         frame.getContentPane().add(campoNome);
         campoNome.setColumns(10);
 
         // Texto "valor"
         JLabel labelNick = new JLabel("Valor:");
-        labelNick.setBounds(66, 138, 60, 25);
+        labelNick.setBounds(270, 138, 60, 25);
         labelNick.setFont(new Font("Tahoma", Font.PLAIN, 19));
         frame.getContentPane().add(labelNick);
 
         // Campo "valor"
         campoCpf = new JTextField();
-        campoCpf.setBounds(66, 164, 225, 23);
+        campoCpf.setBounds(270, 164, 190, 23);
         frame.getContentPane().add(campoCpf);
 
         // Botão "Confirmar"
@@ -79,5 +83,34 @@ public class TelaProdutos {
         btnConfirmar.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnConfirmar.setBackground(Color.decode("#dcdcdc"));
         frame.getContentPane().add(btnConfirmar);
+
+        String[] colunas = {"Produto", "Valor"};
+        model = new DefaultTableModel(colunas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        tabela = new JTable(model);
+        tabela.setBackground(new Color(0, 0, 0));
+
+        scrollTabela = new JScrollPane(tabela);
+
+        JPanel painelCentral = new JPanel(new BorderLayout());
+        painelCentral.setOpaque(false);
+
+        int larguraMetade = frame.getWidth() / 2;
+        int altura = frame.getHeight();
+        scrollTabela.setPreferredSize(new Dimension(larguraMetade, altura));
+
+        painelCentral.add(scrollTabela, BorderLayout.WEST);
+
+        JPanel preenchimento = new JPanel();
+        preenchimento.setOpaque(false);
+        painelCentral.add(preenchimento, BorderLayout.CENTER);
+
+        frame.getContentPane().add(painelCentral, BorderLayout.CENTER);
+
     }
 }
