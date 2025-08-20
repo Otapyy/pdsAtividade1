@@ -108,10 +108,6 @@ public class TelaTabela {
         frame.setVisible(true);
     }
 
-    public void aplicarTema(boolean modoEscuro) {
-        Tema.aplicarTemaTabela(tabela, frame, scrollTabela, modoEscuro);
-    }
-
     public void atualizarTabela() {
         model.setRowCount(0);
         for (Produto c : GerenciadorEstados.listaProdutos) {

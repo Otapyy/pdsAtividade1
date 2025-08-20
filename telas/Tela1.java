@@ -41,21 +41,22 @@ public class Tela1 {
 		initialize();
 	}
 
-	
 	private void initialize() {
+
+		Aviso aviso = new Aviso();
 	
 //Criando o frame	
 		frameTelaLogin = new JFrame();
 		frameTelaLogin.getContentPane().setBackground(new Color(255, 255, 255));
 		frameTelaLogin.setBackground(new Color(255, 255, 255));
-		frameTelaLogin.setBounds(100, 100, 400, 450);
+		frameTelaLogin.setBounds(100, 100, 350, 400);
 		frameTelaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameTelaLogin.getContentPane().setLayout(null);
 		frameTelaLogin.setTitle("Cadastro");
 
 //Texto "Nome"		
 		JLabel labelNome = new JLabel("Nome:");
-		labelNome.setBounds(66, 46, 65, 23);
+		labelNome.setBounds(50, 46, 65, 23);
 		labelNome.setForeground(new Color(0, 0, 0));
 		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		labelNome.setBackground(null);
@@ -63,7 +64,7 @@ public class Tela1 {
 			
 //Caixa de texto "Nome"		
 		campoNome = new JTextField();
-		campoNome.setBounds(66, 74, 255, 23);
+		campoNome.setBounds(50, 74, 225, 23);
 		campoNome.setToolTipText("");
 		campoNome.setForeground(new Color(0, 0, 0));
 		frameTelaLogin.getContentPane().add(campoNome);
@@ -71,18 +72,18 @@ public class Tela1 {
 
 //Texto "Cpf"
 		JLabel labelNick = new JLabel("Cpf:");
-		labelNick.setBounds(66, 138, 42, 25);
+		labelNick.setBounds(50, 138, 42, 25);
 		labelNick.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		frameTelaLogin.getContentPane().add(labelNick);
 
 //Caixa de texto "Cpf"
 		campoCpf = new JTextField();
-		campoCpf.setBounds(66, 164, 255, 23);
+		campoCpf.setBounds(50, 164, 225, 23);
 		frameTelaLogin.getContentPane().add(campoCpf);
 
 //Botão "Confirmar"
 		btnConfirmar = new JButton("CONFIRMAR");
-		btnConfirmar.setBounds(128, 265, 129, 34);
+		btnConfirmar.setBounds(100, 265, 129, 34);
 		btnConfirmar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnConfirmar.setBackground(Color.decode("#dcdcdc"));
 
@@ -92,18 +93,19 @@ public class Tela1 {
 				
 				//Verificando se os campos estão preenchidos
 				if (campoNome.getText().equals("") || campoCpf.getText().equals("")) {
-					JOptionPane.showMessageDialog(frameTelaLogin, "Preencha todos os campos.", "Erro no login", JOptionPane.ERROR_MESSAGE);
+					aviso.avisoErro("Preencha todos os campos");
 		            return;
+
 		        }
 
 				if(campoNome.getText().equals("123") && campoCpf.getText().equals("123")) {
-					JOptionPane.showMessageDialog(frameTelaLogin, "Entrou como administrador.", "Login concluido", JOptionPane.INFORMATION_MESSAGE);
+					aviso.avisoSucesso("Entrou como administrador");
 					GerenciadorEstados.telaProdutos = new TelaProdutos();
 					frameTelaLogin.dispose();
 					GerenciadorEstados.telaProdutos.getFrame().setVisible(true);
 
 				} else{
-					JOptionPane.showMessageDialog(frameTelaLogin, "Entrou como Usuario.", "Login concluido", JOptionPane.INFORMATION_MESSAGE);
+					aviso.avisoSucesso("Entrou como usuario");
 					GerenciadorEstados.telaTabela = new TelaTabela(GerenciadorEstados.listaProdutos);
 					frameTelaLogin.dispose();
 					GerenciadorEstados.telaTabela.getFrame().setVisible(true);

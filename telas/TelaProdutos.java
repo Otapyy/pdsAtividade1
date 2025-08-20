@@ -23,7 +23,7 @@ public class TelaProdutos {
         frame = new JFrame("Cadastro de produtos");
         frame.setBackground(new Color(0, 0, 0));
         frame.getContentPane().setBackground(new Color(255, 255, 255));
-        frame.setBounds(100, 100, 400, 450);
+        frame.setBounds(100, 100, 350, 400);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Usando layout absoluto para setBounds funcionar
@@ -57,20 +57,20 @@ public class TelaProdutos {
 
         // Campo "Nome"
         campoNome = new JTextField();
-        campoNome.setBounds(66, 74, 255, 23);
+        campoNome.setBounds(66, 74, 225, 23);
         campoNome.setForeground(new Color(0, 0, 0));
         frame.getContentPane().add(campoNome);
         campoNome.setColumns(10);
 
-        // Texto "Cpf"
-        JLabel labelNick = new JLabel("Cpf:");
-        labelNick.setBounds(66, 138, 42, 25);
+        // Texto "valor"
+        JLabel labelNick = new JLabel("Valor:");
+        labelNick.setBounds(66, 138, 60, 25);
         labelNick.setFont(new Font("Tahoma", Font.PLAIN, 19));
         frame.getContentPane().add(labelNick);
 
-        // Campo "Cpf"
+        // Campo "valor"
         campoCpf = new JTextField();
-        campoCpf.setBounds(66, 164, 255, 23);
+        campoCpf.setBounds(66, 164, 225, 23);
         frame.getContentPane().add(campoCpf);
 
         // Botão "Confirmar"
